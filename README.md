@@ -2,7 +2,7 @@
 
 ## Rails meta tags helpers
 
-Seo and future-proof meta-tags for Rails, with good customizable defaults that support open-graph: all your meta tags with a single call!
+Seo and future-proof meta-tags for Rails, with good customizable defaults that also provide support for open-graph and csrf: all your meta tags in a single call.
 
 ### Install
 
@@ -84,7 +84,6 @@ default = {
   :"csrf-token" => form_authenticity_token
 }
 ```
-
 
 ---
 

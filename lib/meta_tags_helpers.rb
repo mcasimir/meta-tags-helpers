@@ -108,7 +108,8 @@ module MetaTagsHelpers
         @meta_type
       end
     end
-
+    
+  end
 end
 ActionController::Base.send :include, MetaTagsHelpers::ActionControllerExtension
 ActionView::Base.send :include, MetaTagsHelpers::ActionViewExtension
