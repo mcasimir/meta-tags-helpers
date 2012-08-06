@@ -39,7 +39,9 @@ module MetaTagsHelpers
           :title => opts[:title] || meta_title,
           :description => opts[:description] || meta_description,
           :image => (opts[:og] && opts[:og][:image]) || meta_image
-        } 
+        },
+        :"csrf-param" => request_forgery_protection_token,
+        :"csrf-token" => form_authenticity_token
       }
         
       meta_hash = default.deep_merge(opts)
@@ -61,7 +63,6 @@ module MetaTagsHelpers
         
       html = ""
       html << "<title>#{h(meta_hash.delete(:title)) }</title>\n"
-      html << csrf_meta_tags
       meta_hash.each {|k,v|
         html << "<meta name=\"#{h(k)}\" content=\"#{h(v)}\" />\n"  
       }

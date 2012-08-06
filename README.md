@@ -52,10 +52,10 @@ The first example above will produce the following html:
 
 ### Setting meta tags from controller/partials/other views
 
-You can get/set some of defautls (see below) through handy helpers within controllers or views:
+You can customize some of defautls (see below) through handy helpers within controllers or views:
 
 ``` rb
-meta_title(value = nil) # get or set "meta_title" used in defaults 
+meta_title(value = nil)
 meta_description(value = nil)
 meta_image(value = nil)
 meta_type(value = nil)
@@ -67,21 +67,22 @@ meta_type(value = nil)
 This is the default options hash:
 
 ``` rb
-      default = {
-        :charset => "utf-8", 
-        :"X-UA-Compatible" => "IE=edge,chrome=1", 
-        :viewport => "width=device-width",
-        :title => meta_title,
-        :description => meta_description,
-        :og => { 
-          :url => "#{request.url}", 
-          :type => meta_type || "article",
-          :title => opts[:title] || meta_title,
-          :description => opts[:description] || meta_description,
-          :image => (opts[:og] && opts[:og][:image]) || meta_image 
-        } 
-      }
-
+default = {
+  :charset => "utf-8", 
+  :"X-UA-Compatible" => "IE=edge,chrome=1", 
+  :viewport => "width=device-width",
+  :title => meta_title,
+  :description => meta_description,
+  :og => { 
+    :url => "#{request.url}", 
+    :type => meta_type || "article",
+    :title => opts[:title] || meta_title,
+    :description => opts[:description] || meta_description,
+    :image => (opts[:og] && opts[:og][:image]) || meta_image
+  },
+  :"csrf-param" => request_forgery_protection_token,
+  :"csrf-token" => form_authenticity_token
+}
 ```
 
 

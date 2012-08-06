@@ -15,6 +15,16 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = [
     "README.md"
   ]
+  s.files = [
+    "Gemfile",
+    "Gemfile.lock",
+    "README.md",
+    "Rakefile",
+    "VERSION",
+    "lib/meta-tags-helpers.rb",
+    "lib/meta_tags_helpers.rb",
+    "meta-tags-helpers.gemspec"
+  ]
   s.homepage = "http://github.com/mcasimir/kaminari-bootstrap"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
