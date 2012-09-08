@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
     "lib/meta_tags_helpers.rb",
     "meta-tags-helpers.gemspec"
   ]
-  s.homepage = "http://github.com/mcasimir/kaminari-bootstrap"
+  s.homepage = "http://github.com/mcasimir/meta-tags-helpers"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.24"
