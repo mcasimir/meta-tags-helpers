@@ -64,7 +64,7 @@ module MetaTagsHelpers
       html = ""
       html << "<title>#{h(meta_hash.delete(:title)) }</title>\n"
       meta_hash.each {|k,v|
-        if k.to_s.starts_with?("og:")
+        if k.to_s =~ /[a-zA-Z_][-a-zA-Z0-9_.]\:/
           html << "<meta property=\"#{h(k)}\" content=\"#{h(v)}\" />\n"  
         else
           html << "<meta name=\"#{h(k)}\" content=\"#{h(v)}\" />\n"  

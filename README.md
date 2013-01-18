@@ -39,16 +39,18 @@ The first example above will produce the following html:
 <meta name="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width" />
 <title>MyBlog - This is a Blog</title>
-<meta name="description" content="The blog of mine &amp; a reserved character" />
-<meta name="og:url" content="(THE CURRENT REQUESTED URL)" />
-<meta name="og:type" content="website" />
-<meta name="og:title" content="MyBlog - This is a Blog" />
-<meta name="og:description" content="The blog of mine &amp; a reserved character" />
-<meta name="ns:my_custom_meta" content="a value" />
+<meta property="description" content="The blog of mine &amp; a reserved character" />
+<meta property="og:url" content="(THE CURRENT REQUESTED URL)" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="MyBlog - This is a Blog" />
+<meta property="og:description" content="The blog of mine &amp; a reserved character" />
+<meta property="ns:my_custom_meta" content="a value" />
 <meta name="csrf-param" content="..." />
 <meta name="csrf-token" content="..." />
 
 ```
+
+**NOTE:** namespaced meta (eg. `og:title`) are supposed to be RDF properties and so they are marked using a `property` attribute.
 
 ### Setting meta tags from controller/partials/other views
 
