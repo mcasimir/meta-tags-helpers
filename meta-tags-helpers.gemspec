@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "meta-tags-helpers"
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["mcasimir"]
-  s.date = "2012-08-06"
+  s.date = "2013-01-18"
   s.description = "Rails meta tags helpers"
   s.email = "maurizio.cas@gmail.com"
   s.extra_rdoc_files = [
@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
     "lib/meta_tags_helpers.rb",
     "meta-tags-helpers.gemspec"
   ]
-  s.homepage = "http://github.com/mcasimir/meta-tags-helpers"
+  s.homepage = "http://github.com/mcasimir/kaminari-bootstrap"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.24"
