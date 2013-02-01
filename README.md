@@ -1,8 +1,8 @@
-# meta-tags-helpers
+# Rails meta tags helpers
 
-## Rails meta tags helpers
+## Seo and future-proof meta tags for Rails
 
-Seo and future-proof meta-tags for Rails, with good customizable defaults that also provide support for open-graph and csrf: all your meta tags in a single call.
+The `meta-tags-helpers` gem consists of a set of helpers to setup and render html meta tags in a simple way. It has good customizable defaults that also come with built-in support for open-graph and csrf: all your meta tags in a single call.
 
 ### Install
 
@@ -26,7 +26,7 @@ gem 'meta-tags-helpers'
 
 **NOTE:** You can set namespaced keys (eg. `og:type`) either as key-value pairs (eg. `:"og:type" => ""`) or as nested hashes (eg. `:og => {:type => "..."}`), both of the syntaxes would address the same meta tag.
 
-or using defaults with setters (see below) just:
+or using defaults (see below) just:
 
 ``` erb
 <%= meta_tags %>
@@ -54,12 +54,12 @@ The first example above will produce the following html:
 
 **NOTE:** namespaced meta (eg. `og:title`) are supposed to be RDF properties and so they are marked using a `property` attribute.
 
-### Setting meta tags from controller/partials/other views
+### Setting and overriding meta tags from controller/partials/other views
 
-You can set any meta tags from controller, partials or views via the `set_meta` method:
+You can set any meta tag from controller, partials or views via the `set_meta` method:
 
 ``` rhtml
-<!-- application.html.erb -->
+<!-- application.html.erb: the global settings -->
 <%= meta_tags :og => { :type => "website" } %>
 ```
 
