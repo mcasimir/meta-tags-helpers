@@ -23,28 +23,28 @@
 
 module MetaTagsHelpers
 
+  
+
   module ActionViewExtension
     
-    def meta_tags(*args)
-      opts = args.extract_options!
-      default = {
+    def meta_tags(opts = {})
+
+      default   = {
         :charset => "utf-8", 
         :"X-UA-Compatible" => "IE=edge,chrome=1", 
-        :viewport => "width=device-width",
-        :title => meta_title,
-        :description => meta_description,
+        :viewport => "width=device-width"
         :og => { 
           :url => "#{request.url}", 
-          :type => meta_type || "article",
-          :title => opts[:title] || meta_title,
-          :description => opts[:description] || meta_description,
-          :image => (opts[:og] && opts[:og][:image]) || meta_image
+          :type => "article",
+          :title => opts[:title],
+          :description => opts[:description],
+          :image => (opts[:og] && opts[:og][:image])
         },
         :"csrf-param" => request_forgery_protection_token,
         :"csrf-token" => form_authenticity_token
       }
-        
-      meta_hash = default.deep_merge(opts)
+      
+      meta_hash = default.deep_merge(opts).deep_merge(@_meta_tags_hash || {})
         
       # separates namespaced keys
       namespaces = meta_hash.select { |k,v| v.is_a?(Hash) }
@@ -78,39 +78,31 @@ module MetaTagsHelpers
   module ActionControllerExtension
     extend ActiveSupport::Concern
     included do
-      helper_method :meta_title, :meta_description, :meta_image, :meta_type
+      helper_method :set_meta, :meta_title, :meta_description, :meta_image, :meta_type
+    end
+    
+    def _meta_tags_hash
+      @_meta_tags_hash ||= {}
     end
   
-    def meta_title(*args)
-      if title = args.first
-        @meta_title = title
-      else
-        @meta_title
-      end
+    def set_meta(options)
+      _meta_tags_hash.deep_merge(options)
+    end
+  
+    def meta_title(val)
+      set_meta(:title => val)
     end
       
-    def meta_description(*args)
-      if desc = args.first
-        @meta_description = desc
-      else
-        @meta_description
-      end
+    def meta_description(val)
+      set_meta(:description => val)
     end
       
-    def meta_image(*args)
-      if img = args.first
-        @meta_image = img
-      else
-        @meta_image
-      end
+    def meta_image(val)
+      set_meta(:og => { :image => :val })
     end
 
-    def meta_type(*args)
-      if t = args.first
-        @meta_type = t
-      else
-        @meta_type
-      end
+    def meta_type(val)
+      set_meta(:og => { :type  => :val })      
     end
     
   end
