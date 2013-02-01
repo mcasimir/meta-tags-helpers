@@ -18,7 +18,7 @@ You could use the default meta tags (see below) inserting the following snippet 
 <%= meta_tags %>
 ```
 
-if you don't like the defaults you can overrides them passing other values as a parameter to the `meta_tags` helper.
+if you don't like the defaults you can override them passing other values as a parameter to the `meta_tags` helper.
 
 
 ``` erb
