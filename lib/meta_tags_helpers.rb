@@ -55,7 +55,7 @@ module MetaTagsHelpers
       html.html_safe
     end
     
-  end
+  end #~ ActionViewExtension
   
   module ActionControllerExtension
     extend ActiveSupport::Concern
@@ -99,7 +99,7 @@ module MetaTagsHelpers
     def meta_type(val = nil)
       if val
         @_meta_type = val
-        val ? set_meta(:og => { :type  => val })
+        set_meta(:og => { :type  => val })
       end
       @_meta_type
     end
@@ -126,6 +126,7 @@ module MetaTagsHelpers
       }
       
       meta_hash
+      
     end
     
   end
