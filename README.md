@@ -24,7 +24,7 @@ gem 'meta-tags-helpers'
 %>
 ```
 
-**NOTE:** You can set namespaced keys (eg. `og:type`) either as key-value pairs (eg. `:"og:type" => ""`) or as nested hashes (eg. `:og => {:type => "..."}`), both of the syntaxes would address the same meta tag.
+**NOTE:** You can set namespaced keys (eg. `og:type`) either as key-value pairs (eg. `:"og:type" => "..."`) or as nested hashes (eg. `:og => {:type => "..."}`), both of the syntaxes would address the same meta tag.
 
 or using defaults (see below) just:
 
