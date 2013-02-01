@@ -12,6 +12,15 @@ gem 'meta-tags-helpers'
 
 ### Examples
 
+You could use the default meta tags (see below) inserting the following snippet of `erb` code in your layout. 
+
+``` erb
+<%= meta_tags %>
+```
+
+if you don't like the defaults you can overrides them passing other values as a parameter to the `meta_tags` helper.
+
+
 ``` erb
 <%= meta_tags(
     :title => "MyBlog - This is a Blog",
@@ -24,13 +33,9 @@ gem 'meta-tags-helpers'
 %>
 ```
 
+You can further override these values in your controller, views and partials using the `set_meta` method (see below).
+
 **NOTE:** You can set namespaced keys (eg. `og:type`) either as key-value pairs (eg. `:"og:type" => "..."`) or as nested hashes (eg. `:og => {:type => "..."}`), both of the syntaxes would address the same meta tag.
-
-or using defaults (see below) just:
-
-``` erb
-<%= meta_tags %>
-```
 
 ### What it generates? 
 
@@ -107,6 +112,8 @@ default   = {
 }
 
 ```
+
+**NOTE:** You should supply at least the `title` and the `description`, using `set_meta` or directly as `meta_tags` argument.
 
 ---
 
