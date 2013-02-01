@@ -22,44 +22,26 @@
 
 
 module MetaTagsHelpers
-
-  
-
   module ActionViewExtension
     
     def meta_tags(opts = {})
+ 
+      opts = normalize_meta_hash(opts)
 
       default   = {
-        :charset => "utf-8", 
+        :charset           => "utf-8", 
         :"X-UA-Compatible" => "IE=edge,chrome=1", 
-        :viewport => "width=device-width"
-        :og => { 
-          :url => "#{request.url}", 
-          :type => "article",
-          :title => opts[:title],
-          :description => opts[:description],
-          :image => (opts[:og] && opts[:og][:image])
-        },
-        :"csrf-param" => request_forgery_protection_token,
-        :"csrf-token" => form_authenticity_token
+        :viewport          => "width=device-width",
+        :"og:url"          => "#{request.url}", 
+        :"og:type"         => "article",
+        :"og:title"        => opts[:title],
+        :"og:description"  => opts[:description],
+        :"og:image"        => opts[:"og:image"],
+        :"csrf-param"      => request_forgery_protection_token,
+        :"csrf-token"      => form_authenticity_token
       }
       
       meta_hash = default.deep_merge(opts).deep_merge(@_meta_tags_hash || {})
-        
-      # separates namespaced keys
-      namespaces = meta_hash.select { |k,v| v.is_a?(Hash) }
-        
-      # delete nil/false/namespaced keys
-      meta_hash.delete_if { |k,v| v.blank? || v == false || v.is_a?(Hash)}
-        
-      namespaces.each { |ns, namespaced|
-        namespaced.delete_if { |k,v|
-          v.blank? || v == false || v.is_a?(Hash)
-        }
-        namespaced.each {|k,v|
-          meta_hash[:"#{ns}:#{k}"] = v 
-        }
-      }
         
       html = ""
       html << "<title>#{h(meta_hash.delete(:title)) }</title>\n"
@@ -78,7 +60,7 @@ module MetaTagsHelpers
   module ActionControllerExtension
     extend ActiveSupport::Concern
     included do
-      helper_method :set_meta, :meta_title, :meta_description, :meta_image, :meta_type
+      helper_method :set_meta, :meta_title, :meta_description, :meta_image, :meta_type, :normalize_meta_hash
     end
     
     def _meta_tags_hash
@@ -86,23 +68,64 @@ module MetaTagsHelpers
     end
   
     def set_meta(options)
-      _meta_tags_hash.deep_merge(options)
+      _meta_tags_hash.deep_merge(normalize_meta_hash(options))
     end
   
-    def meta_title(val)
-      set_meta(:title => val)
+    def meta_title(val = nil)
+      if val
+        @_meta_title = val
+        set_meta(:title => val)
+      end
+      
+      @_meta_title
     end
       
-    def meta_description(val)
-      set_meta(:description => val)
+    def meta_description(val = nil)
+      if val
+        @_meta_description = val
+        set_meta(:description => val)
+      end
+      @_meta_description
     end
       
-    def meta_image(val)
-      set_meta(:og => { :image => :val })
+    def meta_image(val = nil)
+      if val
+        @_meta_image = val
+        set_meta(:og => { :image => val })
+      end
+      @_meta_image
     end
 
-    def meta_type(val)
-      set_meta(:og => { :type  => :val })      
+    def meta_type(val = nil)
+      if val
+        @_meta_type = val
+        val ? set_meta(:og => { :type  => val })
+      end
+      @_meta_type
+    end
+    
+    protected
+    
+    def normalize_meta_hash(hash)
+      
+      meta_hash = hash.dup
+      
+      # separates namespaced keys
+      namespaces = meta_hash.select { |k,v| v.is_a?(Hash) }
+        
+      # delete nil/false/namespaced keys
+      meta_hash.delete_if { |k,v| v.blank? || v == false || v.is_a?(Hash)}
+        
+      namespaces.each { |ns, namespaced|
+        namespaced.delete_if { |k,v|
+          v.blank? || v == false || v.is_a?(Hash)
+        }
+        namespaced.each {|k,v|
+          meta_hash[:"#{ns}:#{k}"] = v 
+        }
+      }
+      
+      meta_hash
     end
     
   end

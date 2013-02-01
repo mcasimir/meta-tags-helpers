@@ -24,6 +24,8 @@ gem 'meta-tags-helpers'
 %>
 ```
 
+**NOTE:** You can set namespaced keys (eg. `og:type`) either as key-value pairs (eg. `:"og:type" => ""`) or as nested hashes (eg. `:og => {:type => "..."}`), both of the syntaxes would address the same meta tag.
+
 or using defaults with setters (see below) just:
 
 ``` erb
@@ -54,7 +56,29 @@ The first example above will produce the following html:
 
 ### Setting meta tags from controller/partials/other views
 
-You can customize some of defautls (see below) through handy helpers within controllers or views:
+You can set any meta tags from controller, partials or views via the `set_meta` method:
+
+``` rhtml
+<!-- application.html.erb -->
+<%= meta_tags :og => { :type => "website" } %>
+```
+
+Override it in a controller:
+
+``` rb
+def show
+   set_meta "og:type"   => "article"
+end
+```
+In a view:
+
+``` rhtml
+  <% set_meta "og:type" => "article" %>
+```
+
+**NOTE:** `set_meta(:og => { :type => "article" })` is exactly the same of `set_meta(:"og:type" => "article")` so they will both override the current/default `og:type` meta tag.
+
+You can also customize and read some of defautls (see below) through handy helpers within controllers or views:
 
 ``` rb
 meta_title(value = nil)
@@ -69,22 +93,19 @@ meta_type(value = nil)
 This is the default options hash:
 
 ``` rb
-default = {
-  :charset => "utf-8", 
+default   = {
+  :charset           => "utf-8", 
   :"X-UA-Compatible" => "IE=edge,chrome=1", 
-  :viewport => "width=device-width",
-  :title => meta_title,
-  :description => meta_description,
-  :og => { 
-    :url => "#{request.url}", 
-    :type => meta_type || "article",
-    :title => opts[:title] || meta_title,
-    :description => opts[:description] || meta_description,
-    :image => (opts[:og] && opts[:og][:image]) || meta_image
-  },
-  :"csrf-param" => request_forgery_protection_token,
-  :"csrf-token" => form_authenticity_token
+  :viewport          => "width=device-width",
+  :"og:url"          => "#{request.url}", 
+  :"og:type"         => "article",
+  :"og:title"        => opts[:title],
+  :"og:description"  => opts[:description],
+  :"og:image"        => opts[:"og:image"],
+  :"csrf-param"      => request_forgery_protection_token,
+  :"csrf-token"      => form_authenticity_token
 }
+
 ```
 
 ---
