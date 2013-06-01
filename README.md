@@ -7,7 +7,7 @@ The `meta-tags-helpers` gem consists of a set of helpers to setup and render htm
 ### Install
 
 ``` rb
-gem 'meta-tags-helpers'
+gem 'meta-tags-helpers', '~> 0.1.7'
 ```
 
 ### Examples
