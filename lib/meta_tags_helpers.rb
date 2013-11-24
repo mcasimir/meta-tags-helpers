@@ -68,7 +68,7 @@ module MetaTagsHelpers
     end
   
     def set_meta(options)
-      _meta_tags_hash.deep_merge(normalize_meta_hash(options))
+      _meta_tags_hash.deep_merge!(normalize_meta_hash(options))
     end
   
     def meta_title(val = nil)
