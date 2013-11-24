@@ -1,8 +1,4 @@
-source "http://rubygems.org"
+source 'https://rubygems.org'
 
-gem 'rails'
-
-group :development do  
-  gem "bundler"
-  gem "jeweler", "~> 1.8.4"
-end
+# Specify your gem's dependencies in meta-tags-helpers.gemspec
+gemspec
