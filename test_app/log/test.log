@@ -1,0 +1,123 @@
+---------------------------------------------------------
+MetatagsControllerTest: test_should_allow_to_pass_options
+---------------------------------------------------------
+-----------------------------------------------------------
+MetatagsControllerTest: test_should_get_override_controller
+-----------------------------------------------------------
+-----------------------------------------------------
+MetatagsControllerTest: test_should_get_override_view
+-----------------------------------------------------
+----------------------------------------------------
+MetatagsControllerTest: test_should_normalize_nested
+----------------------------------------------------
+-----------------------------------------------------------------
+MetatagsControllerTest: test_should_render_namespaced_as_property
+-----------------------------------------------------------------
+--------------------------------------------------
+MetatagsControllerTest: test_should_support_arrays
+--------------------------------------------------
+------------------------------------------------------
+MetatagsControllerTest: test_should_work_with_defaults
+------------------------------------------------------
+---------------------------------------------------------
+MetatagsControllerTest: test_should_allow_to_pass_options
+---------------------------------------------------------
+Processing by MetatagsController#options as HTML
+  Rendered metatags/options.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 9ms (Views: 9.1ms)
+-----------------------------------------------------------
+MetatagsControllerTest: test_should_get_override_controller
+-----------------------------------------------------------
+Processing by MetatagsController#override_controller as HTML
+Completed 200 OK in 2ms (Views: 2.1ms)
+-----------------------------------------------------
+MetatagsControllerTest: test_should_get_override_view
+-----------------------------------------------------
+Processing by MetatagsController#override_view as HTML
+Completed 200 OK in 2ms (Views: 2.1ms)
+----------------------------------------------------
+MetatagsControllerTest: test_should_normalize_nested
+----------------------------------------------------
+-----------------------------------------------------------------
+MetatagsControllerTest: test_should_render_namespaced_as_property
+-----------------------------------------------------------------
+Processing by MetatagsController#namespaced as HTML
+Completed 200 OK in 2ms (Views: 2.1ms)
+--------------------------------------------------
+MetatagsControllerTest: test_should_support_arrays
+--------------------------------------------------
+Processing by MetatagsController#arrays as HTML
+Completed 500 Internal Server Error in 3ms
+------------------------------------------------------
+MetatagsControllerTest: test_should_work_with_defaults
+------------------------------------------------------
+Processing by MetatagsController#default as HTML
+Completed 200 OK in 2ms (Views: 2.0ms)
+---------------------------------------------------------
+MetatagsControllerTest: test_should_allow_to_pass_options
+---------------------------------------------------------
+Processing by MetatagsController#options as HTML
+  Rendered metatags/options.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 10ms (Views: 9.3ms)
+-----------------------------------------------------------
+MetatagsControllerTest: test_should_get_override_controller
+-----------------------------------------------------------
+Processing by MetatagsController#override_controller as HTML
+Completed 200 OK in 2ms (Views: 2.2ms)
+-----------------------------------------------------
+MetatagsControllerTest: test_should_get_override_view
+-----------------------------------------------------
+Processing by MetatagsController#override_view as HTML
+Completed 200 OK in 2ms (Views: 2.3ms)
+----------------------------------------------------
+MetatagsControllerTest: test_should_normalize_nested
+----------------------------------------------------
+-----------------------------------------------------------------
+MetatagsControllerTest: test_should_render_namespaced_as_property
+-----------------------------------------------------------------
+Processing by MetatagsController#namespaced as HTML
+Completed 200 OK in 3ms (Views: 2.5ms)
+--------------------------------------------------
+MetatagsControllerTest: test_should_support_arrays
+--------------------------------------------------
+Processing by MetatagsController#arrays as HTML
+Completed 200 OK in 2ms (Views: 2.2ms)
+------------------------------------------------------
+MetatagsControllerTest: test_should_work_with_defaults
+------------------------------------------------------
+Processing by MetatagsController#default as HTML
+Completed 200 OK in 2ms (Views: 2.2ms)
+---------------------------------------------------------
+MetatagsControllerTest: test_should_allow_to_pass_options
+---------------------------------------------------------
+Processing by MetatagsController#options as HTML
+  Rendered metatags/options.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 9ms (Views: 9.1ms)
+-----------------------------------------------------------
+MetatagsControllerTest: test_should_get_override_controller
+-----------------------------------------------------------
+Processing by MetatagsController#override_controller as HTML
+Completed 200 OK in 2ms (Views: 2.0ms)
+-----------------------------------------------------
+MetatagsControllerTest: test_should_get_override_view
+-----------------------------------------------------
+Processing by MetatagsController#override_view as HTML
+Completed 200 OK in 2ms (Views: 2.1ms)
+----------------------------------------------------
+MetatagsControllerTest: test_should_normalize_nested
+----------------------------------------------------
+-----------------------------------------------------------------
+MetatagsControllerTest: test_should_render_namespaced_as_property
+-----------------------------------------------------------------
+Processing by MetatagsController#namespaced as HTML
+Completed 200 OK in 2ms (Views: 2.0ms)
+--------------------------------------------------
+MetatagsControllerTest: test_should_support_arrays
+--------------------------------------------------
+Processing by MetatagsController#arrays as HTML
+Completed 200 OK in 2ms (Views: 2.1ms)
+------------------------------------------------------
+MetatagsControllerTest: test_should_work_with_defaults
+------------------------------------------------------
+Processing by MetatagsController#default as HTML
+Completed 200 OK in 2ms (Views: 2.1ms)

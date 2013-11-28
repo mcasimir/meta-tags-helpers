@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <% if @options.present? %>
+  <%= meta_tags @options %>
+<% else %>
+  <%= meta_tags %>
+<% end %>
+  
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
