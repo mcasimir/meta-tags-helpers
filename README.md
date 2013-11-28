@@ -4,10 +4,12 @@
 
 The `meta-tags-helpers` gem consists of a set of helpers to setup and render html meta tags in a simple way. It has good customizable defaults that also come with built-in support for open-graph and csrf: all your meta tags in a single call.
 
+Supports both Rails 3 and 4.
+
 ### Install
 
 ``` rb
-gem 'meta-tags-helpers', '~> 0.1.7'
+gem 'meta-tags-helpers', '~> 0.2.0'
 ```
 
 ### Examples
@@ -63,7 +65,7 @@ You can equally set namespaced keys through simple key-value pairs (eg. `:"og:ty
 
 Note that you can also easily render arrays of metas having the same key passing an array as value.
 
-```
+``` rhtml
 <%= meta_tags(
     :title => "Escape from New York",
     :description => "Sci-fi film by John Carpenter"
