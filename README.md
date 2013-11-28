@@ -24,7 +24,7 @@ if you don't like the defaults you can override them passing other values as a p
 ``` erb
 <%= meta_tags(
     :title => "MyBlog - This is a Blog",
-    :description => "The blog of mine & a reserved character",
+    :description => "My blog description & a reserved character that will be escaped",
     :og => {:type => "website"}
     :ns => {
       :my_custom_meta => "a value"
@@ -35,9 +35,7 @@ if you don't like the defaults you can override them passing other values as a p
 
 You can further override these values in your controller, views and partials using the `set_meta` method (see below).
 
-**NOTE:** You can set namespaced keys (eg. `og:type`) either as key-value pairs (eg. `:"og:type" => "..."`) or as nested hashes (eg. `:og => {:type => "..."}`), both of the syntaxes would address the same meta tag.
-
-### What it generates? 
+### Generated HTML
 
 The first example above will produce the following html:
 
@@ -57,7 +55,27 @@ The first example above will produce the following html:
 
 ```
 
-**NOTE:** namespaced meta (eg. `og:title`) are supposed to be RDF properties and so they are marked using a `property` attribute.
+### Namespaced Keys
+
+Metas with namespaced keys (eg. `og:title`) are supposed to be RDF properties and so they are rendered using a `property` attribute.
+
+You can equally set namespaced keys through simple key-value pairs (eg. `:"og:type" => "..."`) or with nested hashes (eg. `:og => {:type => "..."}`).
+
+Note that you can also easily render arrays of metas having the same key passing an array as value.
+
+```
+<%= meta_tags(
+    :title => "Escape from New York",
+    :description => "Sci-fi film by John Carpenter"
+    :og => {
+      :type => "video.movie"
+    },
+    :video => {
+      :year => 1981, 
+      :actor => ["Kurt Russell", "Lee Van Cleef"]
+    }) 
+%>
+```
 
 ### Setting and overriding meta tags from controller/partials/other views
 

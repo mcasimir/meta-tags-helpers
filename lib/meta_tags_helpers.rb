@@ -20,8 +20,8 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 module MetaTagsHelpers
+
   module ActionViewExtension
     
     def meta_tags(opts = {})
@@ -40,17 +40,21 @@ module MetaTagsHelpers
         :"csrf-param"      => request_forgery_protection_token,
         :"csrf-token"      => form_authenticity_token
       }
-      
-      meta_hash = default.deep_merge(opts).deep_merge(@_meta_tags_hash || {})
+
+      override_hash = controller.instance_variable_get("@_meta_tags_hash") || {}      
+      meta_hash = default.deep_merge(opts).deep_merge(override_hash)
         
       html = ""
       html << "<title>#{h(meta_hash.delete(:title)) }</title>\n"
-      meta_hash.each {|k,v|
-        if k.to_s =~ /[a-zA-Z_][-a-zA-Z0-9_.]\:/
-          html << "<meta property=\"#{h(k)}\" content=\"#{h(v)}\" />\n"  
-        else
-          html << "<meta name=\"#{h(k)}\" content=\"#{h(v)}\" />\n"  
-        end
+      meta_hash.each {|k,value_or_array|
+        values = value_or_array.is_a?(Array) ? value_or_array : [value_or_array]
+        values.each { |v|
+          if k.to_s =~ /[a-zA-Z_][-a-zA-Z0-9_.]\:/
+            html << "<meta property=\"#{h(k)}\" content=\"#{h(v)}\" />\n"  
+          else
+            html << "<meta name=\"#{h(k)}\" content=\"#{h(v)}\" />\n"  
+          end
+        }
       }
       html.html_safe
     end
@@ -58,7 +62,7 @@ module MetaTagsHelpers
   end #~ ActionViewExtension
   
   module ActionControllerExtension
-    extend ActiveSupport::Concern
+    extend ::ActiveSupport::Concern
     included do
       helper_method :set_meta, :meta_title, :meta_description, :meta_image, :meta_type, :normalize_meta_hash
     end
@@ -107,28 +111,27 @@ module MetaTagsHelpers
     protected
     
     def normalize_meta_hash(hash)
-      
-      meta_hash = hash.dup
-      
-      # separates namespaced keys
-      namespaces = meta_hash.select { |k,v| v.is_a?(Hash) }
-        
-      # delete nil/false/namespaced keys
-      meta_hash.delete_if { |k,v| v.blank? || v == false || v.is_a?(Hash)}
-        
-      namespaces.each { |ns, namespaced|
-        namespaced.delete_if { |k,v|
-          v.blank? || v == false || v.is_a?(Hash)
-        }
-        namespaced.each {|k,v|
-          meta_hash[:"#{ns}:#{k}"] = v 
-        }
-      }
-      
-      meta_hash
-      
+      normalized = {}
+      normalize_meta_hash_walker(hash, normalized)
+      normalized
     end
+
+    private
     
+    def normalize_meta_hash_walker(hash, normalized, current = nil)
+      hash.each do |k, v|
+        thisPath = current ? current.dup : []
+        thisPath << k.to_s
+
+        if v.is_a?(Hash)
+          normalize_meta_hash_walker(v, normalized, thisPath) 
+        elsif v
+          key = thisPath.join ":"
+          normalized[:"#{key}"] = v
+        end
+      end
+    end
+
   end
 end
 ActionController::Base.send :include, MetaTagsHelpers::ActionControllerExtension
