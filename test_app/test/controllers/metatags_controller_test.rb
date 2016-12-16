@@ -85,5 +85,22 @@ class MetatagsControllerTest < ActionController::TestCase
     assert_select "meta[property='og:video:actor'][content=?]", "Mikey"
   end
 
+  test "should render page title" do
+    get :page_title
+    assert_response :success
+    assert_select "title", "Page Title"
+  end
+
+  test "should render site title" do
+    get :site_title
+    assert_response :success
+    assert_select "title", "Site Title"
+  end
+
+  test "should render full title" do
+    get :full_title
+    assert_response :success
+    assert_select "title", "Page Title | Site Title"
+  end
 
 end
