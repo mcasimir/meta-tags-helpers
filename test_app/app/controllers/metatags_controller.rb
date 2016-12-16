@@ -3,15 +3,15 @@ class MetatagsController < ApplicationController
   end
 
   def options
-    @options = { 
-      title: "My title", 
-      description: "My description" 
+    @options = {
+      title: "My title",
+      description: "My description"
     }
   end
 
   def namespaced
     @options = {
-      ns: { 
+      ns: {
         my_custom_meta: "My value"
       }
     }
@@ -30,4 +30,5 @@ class MetatagsController < ApplicationController
   def arrays
     @options = {:og => {:video => { :actor => ["Mikey", "Goofy"] }}}
   end
+
 end
