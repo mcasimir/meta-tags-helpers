@@ -64,7 +64,7 @@ module MetaTagsHelpers
   module ActionControllerExtension
     extend ::ActiveSupport::Concern
     included do
-      helper_method :set_meta, :meta_title, :meat_site_title, :meta_description, :meta_image, :meta_type, :normalize_meta_hash
+      helper_method :set_meta, :meta_title, :meta_page_title, :meta_site_title, :meta_description, :meta_image, :meta_type, :normalize_meta_hash
     end
 
     def _meta_tags_hash

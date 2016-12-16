@@ -31,17 +31,4 @@ class MetatagsController < ApplicationController
     @options = {:og => {:video => { :actor => ["Mikey", "Goofy"] }}}
   end
 
-  def page_title
-    meta_page_title "Page Title"
-  end
-
-  def site_title
-    meta_site_title "Site Title"
-  end
-
-  def full_title
-    meta_page_title "Page Title"
-    meta_site_title "Site Title"
-  end
-
 end
