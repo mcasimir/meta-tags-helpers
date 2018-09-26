@@ -36,9 +36,7 @@ module MetaTagsHelpers
         :"og:type"         => "article",
         :"og:title"        => opts[:title],
         :"og:description"  => opts[:description],
-        :"og:image"        => opts[:"og:image"],
-        :"csrf-param"      => request_forgery_protection_token,
-        :"csrf-token"      => form_authenticity_token
+        :"og:image"        => opts[:"og:image"]
       }
 
       override_hash = controller.instance_variable_get("@_meta_tags_hash") || {}
