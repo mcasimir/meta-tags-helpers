@@ -49,6 +49,8 @@ module MetaTagsHelpers
         values.each { |v|
           if k.to_s =~ /[a-zA-Z_][-a-zA-Z0-9_.]\:/
             html << "<meta property=\"#{h(k)}\" content=\"#{h(v)}\" />\n"
+          elsif k == 'canonical'
+            html << "<link rel=\"#{h(k)}\" href=\"#{h(v)}\" />\n"
           else
             html << "<meta name=\"#{h(k)}\" content=\"#{h(v)}\" />\n"
           end
