@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "meta-tags-helpers"
-  spec.version       = "0.2.0"
+  spec.version       = "0.2.2"
   spec.authors       = ["mcasimir"]
   spec.email         = ["maurizio.cas@gmail.com"]
   spec.description   = "Rails meta tags helpers"

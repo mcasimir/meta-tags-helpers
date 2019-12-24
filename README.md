@@ -14,7 +14,7 @@ gem 'meta-tags-helpers', '~> 0.2.0'
 
 ### Examples
 
-You could use the default meta tags (see below) inserting the following snippet of `erb` code in your layout. 
+You could use the default meta tags (see below) inserting the following snippet of `erb` code in your layout.
 
 ``` erb
 <%= meta_tags %>
@@ -31,10 +31,23 @@ if you don't like the defaults you can override them passing other values as a p
     :ns => {
       :my_custom_meta => "a value"
     }
-    ) 
+    )
 %>
 ```
 
+if you would like to skip any default tag from being rendered, declare it as `:skip => "title"` or as `:skip => ["title", "description"]`.
+
+``` erb
+<%= meta_tags(
+    :title => "MyBlog - This is a Blog",
+    :description => "My blog description & a reserved character that will be escaped",
+    :og => {:type => "website"}
+    :ns => {
+      :my_custom_meta => "a value"
+    }
+    )
+%>
+```
 You can further override these values in your controller, views and partials using the `set_meta` method (see below).
 
 ### Generated HTML
@@ -73,9 +86,9 @@ Note that you can also easily render arrays of metas having the same key passing
       :type => "video.movie"
     },
     :video => {
-      :year => 1981, 
+      :year => 1981,
       :actor => ["Kurt Russell", "Lee Van Cleef"]
-    }) 
+    })
 %>
 ```
 
@@ -119,10 +132,10 @@ This is the default options hash:
 
 ``` rb
 default   = {
-  :charset           => "utf-8", 
-  :"X-UA-Compatible" => "IE=edge,chrome=1", 
+  :charset           => "utf-8",
+  :"X-UA-Compatible" => "IE=edge,chrome=1",
   :viewport          => "width=device-width",
-  :"og:url"          => "#{request.url}", 
+  :"og:url"          => "#{request.url}",
   :"og:type"         => "article",
   :"og:title"        => opts[:title],
   :"og:description"  => opts[:description],
